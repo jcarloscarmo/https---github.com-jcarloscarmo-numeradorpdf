@@ -357,12 +357,45 @@
                         const position = document.querySelector('input[name="position"]:checked').value;
                         let x, y;
 
+                        const isLandscape = width > height;
+
                         // Position calculations
-                        if (position.includes('left')) x = padding;
-                        if (position.includes('center')) x = width / 2 - textWidth / 2;
-                        if (position.includes('right')) x = width - textWidth - padding;
-                        if (position.includes('top')) y = height - textHeight - padding;
-                        if (position.includes('bottom')) y = padding;
+                        if (isLandscape) {
+                            // Landscape
+                            switch (position) {
+                                case 'top-left':
+                                    x = padding;
+                                    y = height - textHeight - padding;
+                                    break;
+                                case 'top-center':
+                                    x = width / 2 - textWidth / 2;
+                                    y = height - textHeight - padding;
+                                    break;
+                                case 'top-right':
+                                    x = width - textWidth - padding;
+                                    y = height - textHeight - padding;
+                                    break;
+                                case 'bottom-left':
+                                    x = padding;
+                                    y = padding;
+                                    break;
+                                case 'bottom-center':
+                                    x = width / 2 - textWidth / 2;
+                                    y = padding;
+                                    break;
+                                case 'bottom-right':
+                                    x = width - textWidth - padding;
+                                    y = padding;
+                                    break;
+                            }
+                        } else {
+                            // Portrait
+                            if (position.includes('left')) x = padding;
+                            if (position.includes('center')) x = width / 2 - textWidth / 2;
+                            if (position.includes('right')) x = width - textWidth - padding;
+                            if (position.includes('top')) y = height - textHeight - padding;
+                            if (position.includes('bottom')) y = padding;
+                        }
 
                         // Draw background rectangle
                         page.drawRectangle({
