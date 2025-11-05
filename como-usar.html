@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Usar - Numerador de Arquivos PDF</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p, li {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .nav {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 700;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .nav a:hover, .nav a.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .floating-button:hover {
+            background-color: #0056b3;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f0f2f5;
+        }
+
+        body.dark-mode .container {
+            background-color: #2a2a2a;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        body.dark-mode .nav {
+            background-color: #2a2a2a;
+        }
+
+        body.dark-mode .nav a {
+            color: #00aaff;
+        }
+
+        body.dark-mode .nav a:hover,
+        body.dark-mode .nav a.active {
+            background-color: #00aaff;
+            color: #fff;
+        }
+
+        body.dark-mode #dark-mode-toggle {
+            background-color: #00aaff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <button id="dark-mode-toggle" class="floating-button">🌙</button>
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="como-usar.html" class="active">Como Usar</a>
+        </div>
+        <h1>O que é a Numeração Bates?</h1>
+        <p>
+            A <strong>Numeração Bates</strong> (ou carimbo Bates) é um método para identificar e rotular documentos de forma única, especialmente em contextos jurídicos, médicos e comerciais. O nome vem do inventor Edwin G. Bates, que criou uma máquina para carimbar números sequenciais em páginas.
+        </p>
+        <p>
+            Cada página de um conjunto de documentos recebe um número de identificação único, que segue uma ordem crescente. Isso facilita a localização e a referência de informações específicas, tornando-se uma ferramenta essencial para a organização e o controle de grandes volumes de documentos.
+        </p>
+        <p>
+            Um carimbo Bates típico é composto por:
+        </p>
+        <ul>
+            <li><strong>Prefixo:</strong> Um texto que aparece antes do número (ex: "PROCESSO-", "CONFIDENCIAL-").</li>
+            <li><strong>Número Sequencial:</strong> O número da página em si, geralmente com uma quantidade fixa de dígitos (ex: 001, 0002, 000003).</li>
+            <li><strong>Sufixo (Opcional):</strong> Um texto que aparece depois do número.</li>
+        </ul>
+
+        <h2>Como Usar a Ferramenta</h2>
+        <p>
+            Esta ferramenta foi criada para aplicar a numeração Bates em seus arquivos PDF de forma rápida e personalizável. Siga os passos abaixo:
+        </p>
+        <ol>
+            <li>
+                <h3>1. Selecione os Arquivos</h3>
+                <p>
+                    Você pode escolher arquivos de três maneiras:
+                </p>
+                <ul>
+                    <li><strong>Selecionar um Arquivo:</strong> Para numerar um único arquivo PDF.</li>
+                    <li><strong>Selecionar Vários Arquivos:</strong> Para numerar uma lista de arquivos PDF. A ordem de seleção será mantida na numeração.</li>
+                    <li><strong>Selecionar uma Pasta:</strong> Para numerar todos os arquivos PDF contidos em uma pasta.</li>
+                </ul>
+                <p>Os arquivos selecionados aparecerão listados na tela.</p>
+            </li>
+            <li>
+                <h3>2. Personalize a Numeração</h3>
+                <p>
+                    Na seção "Personalização da Numeração Bates", você pode definir:
+                </p>
+                <ul>
+                    <li><strong>Prefixo:</strong> O texto que virá antes do número.</li>
+                    <li><strong>Nº Inicial:</strong> O primeiro número da sequência.</li>
+                    <li><strong>Nº de Dígitos:</strong> A quantidade de dígitos que o número terá (ex: 3 para "001", 5 para "00001").</li>
+                    <li><strong>Tamanho e Peso da Fonte:</strong> Ajuste a aparência do texto.</li>
+                    <li><strong>Cor da Fonte e do Fundo:</strong> Escolha cores que garantam a legibilidade do carimbo.</li>
+                    <li><strong>Posição do Carimbo:</strong> Selecione um dos seis cantos da página para aplicar a numeração. Uma pré-visualização ao lado mostrará como o carimbo ficará.</li>
+                </ul>
+            </li>
+            <li>
+                <h3>3. Gere e Baixe os Arquivos</h3>
+                <p>
+                    Na seção "Executar e Baixar":
+                </p>
+                <ul>
+                    <li><strong>Nome do arquivo ZIP:</strong> Defina o nome do arquivo ZIP que conterá todos os PDFs numerados.</li>
+                    <li>Clique em <strong>"Gerar e Baixar Arquivos"</strong>.</li>
+                </ul>
+                <p>
+                    Aguarde o processamento. Ao final, um arquivo <code>.zip</code> será baixado, contendo todos os seus documentos com a numeração Bates aplicada em cada página.
+                </p>
+            </li>
+        </ol>
+    </div>
+    <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+</html>
