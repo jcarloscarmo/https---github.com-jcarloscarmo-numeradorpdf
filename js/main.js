@@ -41,18 +41,8 @@ function updateStampPreview() {
     stampPreview.className = 'stamp ' + selectedPosition;
 }
 
-async function generateAndDownloadFiles() {
-    if (selectedFiles.length === 0) {
-        alert('Por favor, selecione um ou mais arquivos PDF primeiro.');
-        return;
-    }
-
+async function performFileGeneration() {
     const zipName = zipNameInput.value.trim();
-    if (!zipName) {
-        alert('Por favor, insira um nome para o arquivo ZIP.');
-        return;
-    }
-
     generateBtn.disabled = true;
     statusMessage.textContent = 'Iniciando processo...';
 
@@ -150,6 +140,27 @@ async function generateAndDownloadFiles() {
     } finally {
         generateBtn.disabled = false;
     }
+}
+
+async function generateAndDownloadFiles() {
+    if (selectedFiles.length === 0) {
+        alert('Por favor, selecione um ou mais arquivos PDF primeiro.');
+        return;
+    }
+
+    const zipName = zipNameInput.value.trim();
+    if (!zipName) {
+        alert('Por favor, insira um nome para o arquivo ZIP.');
+        return;
+    }
+
+    openThankYouSupportModal({
+        qrImageUrl: 'assets/qrcode.jpg',
+        paymentKey: '690be209-2356-4000-9c14-6a060b4803b4',
+        onHelped: () => {
+            performFileGeneration();
+        }
+    });
 }
 
 updateStampPreview();
