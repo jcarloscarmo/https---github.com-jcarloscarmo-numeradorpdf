@@ -7,6 +7,7 @@ const generateBtn = document.getElementById('generate-btn');
 const statusMessage = document.getElementById('status-message');
 const prefixInput = document.getElementById('prefix');
 const startNumberInput = document.getElementById('start-number');
+const incrementStepInput = document.getElementById('increment-step');
 const digitsInput = document.getElementById('digits');
 const fontSizeInput = document.getElementById('font-size');
 const fontWeightSelect = document.getElementById('font-weight');

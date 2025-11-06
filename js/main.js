@@ -48,6 +48,7 @@ async function performFileGeneration() {
 
     const zip = new JSZip();
     let batesCounter = parseInt(startNumberInput.value, 10);
+    const incrementStep = parseInt(incrementStepInput.value, 10) || 1;
 
     try {
         for (const file of selectedFiles) {
@@ -122,7 +123,7 @@ async function performFileGeneration() {
                     color: hexToRgb(fontColorInput.value),
                 });
 
-                batesCounter++;
+                batesCounter += incrementStep;
             }
 
             const pdfBytes = await pdfDoc.save();
