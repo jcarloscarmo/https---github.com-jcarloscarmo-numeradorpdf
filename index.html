@@ -3,100 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seletor de Arquivos</title>
+    <title>Numerador de Arquivos - Numerador Bates</title>
+    <meta name="description" content="Ferramenta online para numerar arquivos PDF com o sistema Bates.">
+    <meta name="keywords" content="Bates, PDF, numerar, arquivos, online, ferramenta">
+    <meta name="author" content="Jolt Sistemas">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj4KICA8cGF0aCBkPSJNMTQgMmgtOGMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxMmMxLjEgMCAyLS45IDItMnYtOGwtNi02em0tMiAxMkg4di0yaDR2MnptMi00aC02VjhoNnYyem0wLTh2NGg0bC00LTR6Ii8+Cjwvc3ZnPgo=">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <button id="dark-mode-toggle" class="floating-button">🌙</button>
-    <div class="container">
-                <div class="nav">
-                    <a href="index.html" class="active">Home</a>
-                    <a href="como-usar.html">Como Usar</a>
-                </div>        <h1>Numerador de Arquivos PDF</h1>
-        <h2>Seletor de Arquivos</h2>
-        <p>Escolha selecionar um único arquivo, vários arquivos ou uma pasta inteira.</p>
-        <div class="button-group">
-            <button class="button" onclick="document.getElementById('single-file').click()">Selecionar um Arquivo</button>
-            <button class="button" onclick="document.getElementById('multiple-files').click()">Selecionar Vários Arquivos</button>
-            <button class="button" onclick="document.getElementById('folder').click()">Selecionar uma Pasta</button>
+<body class="dark-mode">
+    <header>
+        <div class="container">
+            <div class="nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="quem-sou-eu.html">Quem Sou Eu</a>
+            </div>
+            <button id="dark-mode-toggle" class="floating-button">🌙</button>
         </div>
-        <input type="file" id="single-file" accept=".pdf">
-        <input type="file" id="multiple-files" multiple accept=".pdf">
-        <input type="file" id="folder" webkitdirectory directory>
-        <div id="file-list"></div>
+    </header>
 
-        <div class="customization-section">
-            <h2>Personalização da Numeração Bates</h2>
-            <div class="form-grid">
-                <div class="form-group">
-                    <label for="prefix">Prefixo</label>
-                    <input type="text" id="prefix" value="Doc- ">
-                </div>
-                <div class="form-group">
-                    <label for="start-number">Nº Inicial</label>
-                    <input type="number" id="start-number" value="1" min="1">
-                </div>
-                <div class="form-group">
-                    <label for="digits">Nº de Dígitos</label>
-                    <input type="number" id="digits" value="3" min="1">
-                </div>
-            </div>
-            <div class="form-grid">
-                 <div class="form-group">
-                    <label for="font-size">Tamanho Fonte</label>
-                    <input type="number" id="font-size" value="12" min="1">
-                </div>
-                <div class="form-group">
-                    <label for="font-weight">Peso Fonte</label>
-                    <select id="font-weight">
-                        <option value="normal">Normal</option>
-                        <option value="bold">Negrito</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="font-color">Cor Fonte</label>
-                    <input type="color" id="font-color" value="#000000">
-                </div>
-                <div class="form-group">
-                    <label for="bg-color">Cor Fundo</label>
-                    <input type="color" id="bg-color" value="#ffffff">
-                </div>
-            </div>
+    <main class="container">
+        <section class="hero">
+            <h1>Numerador de Arquivos</h1>
+            <h2>Numerador Bates</h2>
+        </section>
 
-            <h3>Posição e Visualização do Carimbo</h3>
-            <div class="illustration-section">
-                <div class="position-controls">
-                    <div class="form-group">
-                        <label><input type="radio" name="position" value="top-left" checked> Sup. Esquerdo</label>
-                        <label><input type="radio" name="position" value="top-center"> Sup. Central</label>
-                        <label><input type="radio" name="position" value="top-right"> Sup. Direito</label>
-                        <label><input type="radio" name="position" value="bottom-left"> Inf. Esquerdo</label>
-                        <label><input type="radio" name="position" value="bottom-center"> Inf. Central</label>
-                        <label><input type="radio" name="position" value="bottom-right"> Inf. Direito</label>
+        <section id="step-1" class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h2>Selecione os Arquivos</h2>
+                <p>Escolha selecionar um único arquivo, vários arquivos ou uma pasta inteira.</p>
+                <div class="button-group">
+                    <button class="button" onclick="document.getElementById('single-file').click()">Selecionar um Arquivo</button>
+                    <button class="button" onclick="document.getElementById('multiple-files').click()">Selecionar Vários Arquivos</button>
+                    <button class="button" onclick="document.getElementById('folder').click()">Selecionar uma Pasta</button>
+                </div>
+                <input type="file" id="single-file" accept=".pdf" style="display: none;">
+                <input type="file" id="multiple-files" multiple accept=".pdf" style="display: none;">
+                <input type="file" id="folder" webkitdirectory directory style="display: none;">
+                <div id="file-list"></div>
+            </div>
+        </section>
+
+        <section id="step-2" class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h2>Personalize a Numeração</h2>
+                <div class="customization-section">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="prefix">Prefixo</label>
+                            <input type="text" id="prefix" value="Doc- ">
+                        </div>
+                        <div class="form-group">
+                            <label for="start-number">Nº Inicial</label>
+                            <input type="number" id="start-number" value="1" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="digits">Nº de Dígitos</label>
+                            <input type="number" id="digits" value="3" min="1">
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="font-size">Tamanho Fonte</label>
+                            <input type="number" id="font-size" value="12" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="font-weight">Peso Fonte</label>
+                            <select id="font-weight">
+                                <option value="normal">Normal</option>
+                                <option value="bold">Negrito</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="font-color">Cor Fonte</label>
+                            <input type="color" id="font-color" value="#000000">
+                        </div>
+                        <div class="form-group">
+                            <label for="bg-color">Cor Fundo</label>
+                            <input type="color" id="bg-color" value="#ffffff">
+                        </div>
+                    </div>
+                    <h3>Posição e Visualização do Carimbo</h3>
+                    <div class="illustration-section">
+                        <div class="position-controls">
+                            <div class="form-group">
+                                <label><input type="radio" name="position" value="top-left" checked> Sup. Esquerdo</label>
+                                <label><input type="radio" name="position" value="top-center"> Sup. Central</label>
+                                <label><input type="radio" name="position" value="top-right"> Sup. Direito</label>
+                                <label><input type="radio" name="position" value="bottom-left"> Inf. Esquerdo</label>
+                                <label><input type="radio" name="position" value="bottom-center"> Inf. Central</label>
+                                <label><input type="radio" name="position" value="bottom-right"> Inf. Direito</label>
+                            </div>
+                        </div>
+                        <div class="document-preview">
+                            <div id="stamp-preview" class="stamp top-left">CASE-000001</div>
+                        </div>
                     </div>
                 </div>
-                <div class="document-preview">
-                    <div id="stamp-preview" class="stamp top-left">CASE-000001</div>
+            </div>
+        </section>
+
+        <section id="step-3" class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h2>Execute e Baixe</h2>
+                <div class="actions-section">
+                    <div class="form-group">
+                        <label for="zip-name">Nome do arquivo ZIP de saída</label>
+                        <input type="text" id="zip-name" value="arquivos_numerados">
+                    </div>
+                    <div class="button-group">
+                        <button id="generate-btn" class="button">Gerar e Baixar Arquivos</button>
+                    </div>
+                    <p id="status-message"></p>
                 </div>
             </div>
-        </div>
+        </section>
+    </main>
 
-        <div class="actions-section">
-            <h2>Executar e Baixar</h2>
-            <div class="form-group">
-                <label for="zip-name">Nome do arquivo ZIP de saída</label>
-                <input type="text" id="zip-name" value="arquivos_numerados">
-            </div>
-            <div class="button-group">
-                <button id="generate-btn" class="button">Gerar e Baixar Arquivos</button>
-            </div>
-            <p id="status-message"></p>
+    <footer>
+        <div class="container">
+            <p>Desenvolvido por José Carlos - <a href="#">Contato</a></p>
         </div>
-    </div>
+    </footer>
 
     <script src="js/utils.js"></script>
     <script src="js/domElements.js"></script>
