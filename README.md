@@ -1,35 +1,71 @@
-# Gerador de Numeração Bates
+# 🧾 Gerador de Numeração Bates (Bates Stamping)
 
-Este é um simples gerador de Numeração Bates criado para auxiliar na organização de documentos legais.
+Uma ferramenta simples e gratuita para aplicar **Numeração Bates** em documentos PDF — ideal para advogados, escritórios e profissionais que lidam com grandes volumes de documentos jurídicos.
 
-## O que é a Numeração Bates?
-
-A **Numeração Bates** (ou *Bates Stamping*) é um método de indexação de documentos legais para fácil identificação e recuperação. Cada página de um conjunto de documentos recebe um número de identificação único e sequencial.
-
-Essa numeração é normalmente aplicada no cabeçalho ou rodapé de cada página e pode incluir:
-- Um número sequencial (ex: 000001, 000002, ...)
-- Um prefixo ou sufixo para identificar o caso, o cliente ou o lote de documentos (ex: CASO123-000001, PROVA-CLIENTEX-000002)
-- A data e hora da numeração.
-
-## Como a Numeração Bates Ajuda Advogados?
-
-A numeração Bates é uma ferramenta fundamental na prática jurídica moderna, especialmente em litígios que envolvem um grande volume de documentos. Veja como ela ajuda:
-
-### 1. **Organização e Consistência**
-Garante que todos os documentos de um caso sejam organizados de forma lógica e consistente. Uma vez que um documento é numerado, ele tem um lugar fixo no conjunto de documentos, evitando confusão.
-
-### 2. **Recuperação Rápida**
-Advogados, juízes e outras partes envolvidas podem se referir a uma página específica usando seu número Bates. Por exemplo, em uma petição ou durante um depoimento, um advogado pode dizer "refiro-me ao documento na página ABC-001234", permitindo que todos localizem a página exata instantaneamente.
-
-### 3. **Integridade do Documento**
-A sequência numérica contínua garante que todas as páginas de um conjunto de produção de documentos sejam contabilizadas. Se houver uma lacuna na numeração, isso pode indicar que páginas estão faltando. Da mesma forma, impede a inserção não autorizada de novas páginas.
-
-### 4. **Facilita a Produção e o Intercâmbio de Provas (Discovery)**
-No processo de *discovery* (produção de provas), as partes trocam milhares de documentos. A numeração Bates é o padrão da indústria para rastrear quais documentos foram solicitados e produzidos por cada parte, criando um registro claro e auditável.
-
-### 5. **Colaboração Eficiente**
-Quando várias equipes de advogados, peritos e tribunais trabalham com o mesmo conjunto de documentos, a numeração Bates cria um ponto de referência universal, tornando a comunicação e a colaboração muito mais eficientes.
+<!-- Badges (opcionais — ajuste os links conforme seu projeto) -->
+![status](https://img.shields.io/badge/status-active-brightgreen)
+![license](https://img.shields.io/badge/license-MIT-blue)
+![made-with](https://img.shields.io/badge/made%20with-HTML%2FCSS%2FJS-orange)
 
 ---
 
-Este projeto visa fornecer uma ferramenta simples para aplicar essa numeração essencial a documentos digitais.
+## ✨ Recursos
+- 🔢 Numeração sequencial configurável (`000001`, `000002`, …)
+- 🏷️ Prefixo e/ou sufixo (ex.: `CASO123-000001`, `PROVA-CLIENTE-000002`)
+- 📍 Posição da marca (cabeçalho/rodapé)
+- 🕒 Opção de incluir data/hora
+- ⚙️ Interface simples e 100% no navegador (sem instalar nada)
+- 💼 Focado em rotinas jurídicas (discovery/produção de provas)
+
+---
+
+## 📘 O que é a Numeração Bates?
+
+A **Numeração Bates** (ou *Bates Stamping*) é um método de indexação usado para **identificar e rastrear páginas de documentos legais** de forma organizada e sequencial.  
+Normalmente colocada no cabeçalho ou rodapé, pode incluir:
+
+- Número sequencial (`000001`, `000002`, …)  
+- **Prefixo/sufixo** para caso/cliente/lote  
+- **Data e hora** da numeração
+
+---
+
+## ⚖️ Por que isso ajuda no dia a dia jurídico?
+
+1. **Organização e consistência** → sequência única e previsível para cada página.  
+2. **Recuperação rápida** → referência direta a uma página específica (ex.: *“ver página ABC-001234”*).  
+3. **Integridade de documentos** → lacunas indicam páginas faltantes; evita inserções indevidas.  
+4. **Discovery/produção de provas** → padrão do mercado para rastrear o que foi solicitado e produzido.  
+5. **Colaboração eficiente** → referência universal entre equipes, peritos e tribunais.
+
+---
+
+## 🚀 Como usar
+
+1. **Abra o site** (hospedado na Vercel) ou rode localmente (ver abaixo).  
+2. **Envie seus PDFs**.  
+3. **Defina as opções**: prefixo/sufixo, formato numérico, posição e (opcional) data/hora.  
+4. **Gere e baixe** seus documentos numerados.
+
+> Dica: ao final do download, há um pop-up opcional de agradecimento com QR Code para apoio ao projeto. 🌟
+
+---
+
+## 🧩 Executar localmente
+
+```bash
+# 1) Clone o repositório
+git clone https://github.com/SEU_USUARIO/SEU_REPO.git
+cd SEU_REPO
+
+# 2) Sirva os arquivos estáticos (escolha uma opção)
+
+# Opção A: com Python 3
+python -m http.server 5173
+
+# Opção B: com Node (instale o serve globalmente)
+npm i -g serve
+serve -l 5173 .
+
+# 3) Acesse no navegador
+# http://localhost:5173
