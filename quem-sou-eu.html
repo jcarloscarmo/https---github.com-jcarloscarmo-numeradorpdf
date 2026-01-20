@@ -3,43 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quem Sou Eu - Numerador de Arquivos PDF</title>
+    <title>Quem Sou Eu - PDF Mestre</title>
     <meta name="author" content="Jolt Sistemas">
-    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj4KICA8cGF0aCBkPSJNMTQgMmgtOGMtMS4xIDAtMiAuOS0yIDJ2MTRjMCAxLjEuOSAyIDIgMmgxMmMxLjEgMCAyLS45IDItMnYtOGwtNi02em0tMiAxMkg4di0yaDR2MnptMi00aC02VjhoNnYyem0wLTh2NGg0bC00LTR6Ii8+Cjwvc3ZnPgo=">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzRBN0RGNyI+CiAgPHBhdGggZD0iTTE0IDJoLThjLTEuMSAwLTIgLjktMiAydjE0YzAgMS4xLjkgMiAyIDJoMTJjMS4xIDAgMi0uOSAyLTJ2LThsLTYtNnptLTIgMTJIOHYtMmgydjJ6bTIgNGgtNlY4aDZ2MnpNMTQgMnY0aDRsLTQtNHoiLz4KPC9zdmc+Cg==">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
+    
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .about-section {
+            padding: 60px 0;
+            background-color: #fff;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr; /* Coluna da foto fixa, texto flexível */
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .profile-container {
+            position: relative;
+        }
+        
+        .profile-pic {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border: 5px solid #fff;
+        }
+
+        .about-text h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about-text h1::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: #e9ecef;
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* Responsividade para celular */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .profile-pic {
+                max-width: 250px;
+                margin: 0 auto;
+            }
+            .about-text h1::after {
+                margin: 10px auto; /* Centraliza a linha decorativa */
+            }
+        }
+    </style>
 </head>
-<body class="dark-mode">
-    <header>
+<body>
+    <header class="main-header">
         <div class="container">
-            <div class="nav">
-                <a href="index.html">Home</a>
-                <a href="sobre.html">Sobre</a>
-                <a href="quem-sou-eu.html" class="active">Quem Sou Eu</a>
-            </div>
-            <button id="dark-mode-toggle" class="floating-button">🌙</button>
+            <nav class="main-nav">
+                <a href="index.html" class="logo"><img src="assets/logo.png" alt="PDF Mestre Logo"></a>
+                <div class="nav-links">
+                    <a href="index.html">Numerar PDF</a>
+                    <a href="juntar.html">Juntar PDF</a>
+                    <a href="index.html#como-funciona">Como Funciona</a>
+                    <a href="quem-sou-eu.html" class="active-tool">Quem Sou Eu</a>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <main class="container about-me-content">
-        <div class="about-me-container">
-            <img src="assets/jose-carlos.png" alt="José Carlos" class="profile-pic">
-            <div class="about-me-text">
-                <h1>SOBRE MIM</h1>
-                <p>Sou José Carlos, tenho 36 anos e 20 anos trabalhando na àrea da tecnologia, dentre manutenção de computadores, smartphones e desenvolvimento web. Sou apaixonado por aprender e compartilhar conhecimento.</p>
-                <p>Desde cedo me interessei por tecnologia e programação, sempre buscando aprender mais e me aprimorar na área. Hoje sou proprietário da loja Jcell e da Jolt Sistemas, empresas das quais me orgulho muito.</p>
-                <p>A Jcell adota uma abordagem focada na qualidade e agilidade na manutenção de celulares e eletrônicos, sempre buscando soluções eficientes para garantir a satisfação dos clientes. Já a Jolt Sistemas tem como objetivo principal ajudar negócios que estão começando, desenvolvendo páginas web personalizadas e acessíveis, contribuindo para o crescimento e presença digital dessas empresas e pessoas.</p>
-                <p>Além disso, sou um entusiasta de jogos eletrônicos, música e filmes. Acredito que essas paixões me ajudam a manter a criatividade e a inspiração em alta, o que é fundamental para o meu trabalho como desenvolvedor web.</p>
+    <main>
+        <section class="hero" style="padding: 60px 0; min-height: auto;">
+            <div class="container">
+                <h1>Conheça o Desenvolvedor</h1>
+                <p class="subtitle">Tecnologia, inovação e soluções práticas.</p>
             </div>
-        </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="profile-container">
+                        <img src="assets/jose-carlos.png" alt="José Carlos" class="profile-pic">
+                    </div>
+
+                    <div class="about-text">
+                        <h1>Sobre Mim</h1>
+                        <p>Sou <strong>José Carlos</strong>, tenho 36 anos e 20 anos de experiência na área da tecnologia, atuando desde manutenção de hardware até desenvolvimento web moderno. Sou apaixonado por aprender e compartilhar conhecimento prático.</p>
+                        
+                        <p>Desde cedo, me interessei por como a tecnologia pode facilitar a vida das pessoas. Hoje sou proprietário da <strong>Jcell</strong> e da <strong>Jolt Sistemas</strong>, empreendimentos onde aplico essa paixão diariamente.</p>
+                        
+                        <p>Na <em>Jcell</em>, o foco é qualidade e agilidade na manutenção de eletrônicos. Já na <em>Jolt Sistemas</em>, meu objetivo é ajudar negócios iniciantes a terem uma presença digital forte, desenvolvendo páginas web personalizadas e ferramentas úteis como este <strong>PDF Mestre</strong>.</p>
+                        
+                        <p>Além do código, sou entusiasta de jogos, música e cinema. Acredito que essas paixões alimentam a criatividade necessária para criar soluções de software intuitivas e eficientes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
+    <footer class="main-footer">
         <div class="container">
-            <p>Desenvolvido por Jolt Sistemas - <a href="#">Contato</a></p>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PDF Mestre</h3>
+                    <p>Sua plataforma completa para edição de PDFs: segura, rápida e gratuita.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Numerar PDF</a></li>
+                        <li><a href="juntar.html">Juntar PDF</a></li>
+                        <li><a href="quem-sou-eu.html">Sobre o Desenvolvedor</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <p>Tem uma sugestão? <a href="https://wa.me/5512981723932" target="_blank">Fale comigo no WhatsApp</a>.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 PDF Mestre. Client-Side Secure Processing.</p>
+            </div>
         </div>
     </footer>
-
-    <script src="js/domElements.js"></script>
-    <script src="js/darkMode.js"></script>
 </body>
 </html>

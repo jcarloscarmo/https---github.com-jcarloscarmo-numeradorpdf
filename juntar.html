@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juntar PDF (Merge) - PDF Mestre</title>
+    <meta name="description" content="Una múltiplos arquivos PDF em um único documento organizado.">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzRBN0RGNyI+CiAgPHBhdGggZD0iTTE0IDJoLThjLTEuMSAwLTIgLjktMiAydjE0YzAgMS4xLjkgMiAyIDJoMTJjMS4xIDAgMi0uOSAyLTJ2LThsLTYtNnptLTIgMTJIOHYtMmgydjJ6bTIgNGgtNlY4aDZ2MnpNMTQgMnY0aDRsLTQtNHoiLz4KPC9zdmc+Cg==">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/thankyou-modal.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="index.html" class="logo"><img src="assets/logo.png" alt="PDF Mestre Logo"></a>
+                <div class="nav-links">
+                    <a href="index.html">Numerar PDF</a>
+                    <a href="juntar.html" class="active-tool">Juntar PDF</a>
+                    <a href="index.html#como-funciona">Como Funciona</a>
+                    <a href="quem-sou-eu.html">Quem Sou Eu</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Juntar Arquivos PDF</h1>
+                <p class="subtitle">Combine múltiplos documentos em um único arquivo PDF na ordem que você precisar.</p>
+                <button class="button-primary" id="hero-cta">
+                    Selecionar Arquivos
+                </button>
+            </div>
+        </section>
+
+        <section id="ferramenta" class="tool-section">
+            <div class="container">
+                <div class="tool-container">
+                    
+                    <div class="tool-step">
+                        <div class="step-icon-container">
+                            <div class="step-icon">1</div>
+                            <h3>Organize seus Arquivos</h3>
+                        </div>
+                        <div id="file-drop-zone" class="file-drop-zone">
+                            <p>Arraste os arquivos PDF aqui</p>
+                            <p>ou</p>
+                            <button id="file-input-button" class="button-secondary">Adicionar Arquivos</button>
+                            <input type="file" id="file-input" multiple accept=".pdf" style="display: none;">
+                        </div>
+                        
+                        <div id="file-list-container" class="file-list-container">
+                            </div>
+                    </div>
+
+                    <div class="tool-step">
+                        <div class="step-icon-container">
+                            <div class="step-icon">2</div>
+                            <h3>Salvar Arquivo Unido</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="output-name">Nome do arquivo Final</label>
+                            <input type="text" id="output-name" value="arquivo_completo">
+                        </div>
+                        <button id="generate-btn" class="button-primary full-width">Juntar e Baixar PDF</button>
+                        <p id="status-message" class="status-message"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p style="text-align: center; color: rgba(255,255,255,0.7);">&copy; 2024 PDF Mestre. Client-Side Secure Processing.</p>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/thankyou-modal.js"></script>
+    <script src="js/merge.js"></script> </body>
+</html>
