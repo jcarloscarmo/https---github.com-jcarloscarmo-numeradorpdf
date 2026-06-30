@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juntar PDF (Merge) - PDF Mestre</title>
-    <meta name="description" content="Una múltiplos arquivos PDF em um único documento organizado.">
+    <title>Girar Páginas - PDF Mestre</title>
+    <meta name="description" content="Gire páginas de arquivos PDF facilmente.">
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzRBN0RGNyI+CiAgPHBhdGggZD0iTTE0IDJoLThjLTEuMSAwLTIgLjktMiAydjE0YzAgMS4xLjkgMiAyIDJoMTJjMS4xIDAgMi0uOSAyLTJ2LThsLTYtNnptLTIgMTJIOHYtMmgydjJ6bTIgNGgtNlY4aDZ2MnpNMTQgMnY0aDRsLTQtNHoiLz4KPC9zdmc+Cg==">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -18,14 +19,14 @@
                 <a href="index.html" class="logo"><img src="assets/logo.png" alt="PDF Mestre Logo"></a>
                 <div class="nav-links">
                     <a href="index.html">Numerar PDF</a>
-                    <a href="juntar.html" class="active-tool">Juntar PDF</a>
+                    <a href="juntar.html">Juntar PDF</a>
                     <div class="dropdown">
                         <button class="dropdown-btn">Mais Ferramentas ▼</button>
                         <div class="dropdown-content">
                             <a href="dividir.html">Dividir PDF</a>
                             <a href="marcadagua.html">Marca d'Água</a>
                             <a href="imagens.html">Imagens para PDF</a>
-                            <a href="girar.html">Girar Páginas</a>
+                            <a href="girar.html" class="active-tool">Girar Páginas</a>
                         </div>
                     </div>
                     <a href="quem-sou-eu.html">Quem Sou Eu</a>
@@ -37,11 +38,9 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Juntar Arquivos PDF</h1>
-                <p class="subtitle">Combine múltiplos documentos em um único arquivo PDF na ordem que você precisar.</p>
-                <button class="button-primary" id="hero-cta">
-                    Selecionar Arquivos
-                </button>
+                <h1>Girar PDF</h1>
+                <p class="subtitle">Conserte documentos escaneados de cabeça para baixo ou de lado. Gire e salve os arquivos na orientação correta.</p>
+                <button class="button-primary" id="hero-cta">Selecionar Arquivos</button>
             </div>
         </section>
 
@@ -52,30 +51,68 @@
                     <div class="tool-step">
                         <div class="step-icon-container">
                             <div class="step-icon">1</div>
-                            <h3>Organize seus Arquivos</h3>
+                            <h3>Selecione os PDFs</h3>
                         </div>
                         <div id="file-drop-zone" class="file-drop-zone">
                             <p>Arraste os arquivos PDF aqui</p>
                             <p>ou</p>
-                            <button id="file-input-button" class="button-secondary">Adicionar Arquivos</button>
+                            <button id="file-input-button" class="button-secondary">Selecionar Arquivos</button>
                             <input type="file" id="file-input" multiple accept=".pdf" style="display: none;">
                         </div>
-                        
-                        <div id="file-list-container" class="file-list-container">
-                            </div>
+                        <div id="file-list-container" class="file-list-container"></div>
                     </div>
 
                     <div class="tool-step">
                         <div class="step-icon-container">
                             <div class="step-icon">2</div>
-                            <h3>Salvar Arquivo Unido</h3>
+                            <h3>Direção da Rotação</h3>
+                        </div>
+                        
+                        <div class="position-controls" style="grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+                            <input type="radio" id="rot-left" name="rotation" value="-90">
+                            <label for="rot-left" style="padding: 20px; font-weight: bold; font-size: 1.1rem;">↺ Esquerda (90º)</label>
+                            
+                            <input type="radio" id="rot-right" name="rotation" value="90" checked>
+                            <label for="rot-right" style="padding: 20px; font-weight: bold; font-size: 1.1rem;">↻ Direita (90º)</label>
+                            
+                            <input type="radio" id="rot-180" name="rotation" value="180">
+                            <label for="rot-180" style="padding: 20px; font-weight: bold; font-size: 1.1rem;">⇅ Ponta Cabeça (180º)</label>
+                        </div>
+                    </div>
+
+                    <div class="tool-step">
+                        <div class="step-icon-container">
+                            <div class="step-icon">3</div>
+                            <h3>Executar e Baixar</h3>
                         </div>
                         <div class="form-group">
-                            <label for="output-name">Nome do arquivo Final</label>
-                            <input type="text" id="output-name" value="arquivo_completo">
+                            <label for="zip-name">Nome do arquivo ZIP (se vários PDFs)</label>
+                            <input type="text" id="zip-name" value="documentos_girados">
                         </div>
-                        <button id="generate-btn" class="button-primary full-width">Juntar e Baixar PDF</button>
+                        <button id="generate-btn" class="button-primary full-width" style="margin-top: 20px;">Girar e Baixar</button>
                         <p id="status-message" class="status-message"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="como-funciona" class="content-section alternate-bg">
+            <div class="container">
+                <h2>Como Girar Páginas do PDF</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Adicione os PDFs</h3>
+                        <p>Selecione os documentos escaneados que ficaram de lado ou de ponta-cabeça.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Escolha a Direção</h3>
+                        <p>Selecione se deseja girar o documento 90 graus para a direita, esquerda ou inverter (180 graus).</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Rotacionar e Salvar</h3>
+                        <p>Clique no botão e o sistema vai consertar a orientação de todas as páginas permanentemente, baixando o arquivo corrigido.</p>
                     </div>
                 </div>
             </div>
@@ -146,5 +183,6 @@
     </footer>
 
     <script src="js/utils.js"></script>
-    <script src="js/merge.js"></script> </body>
+    <script src="js/girar.js"></script>
+</body>
 </html>

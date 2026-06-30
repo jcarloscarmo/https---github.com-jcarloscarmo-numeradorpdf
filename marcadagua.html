@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numerar PDF (Bates) - PDF Mestre</title>
-    <meta name="description" content="Adicione numeração Bates em documentos PDF de forma segura e online.">
+    <title>Marca d'Água - PDF Mestre</title>
+    <meta name="description" content="Adicione marca d'água aos seus documentos PDF de forma segura.">
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzRBN0RGNyI+CiAgPHBhdGggZD0iTTE0IDJoLThjLTEuMSAwLTIgLjktMiAydjE0YzAgMS4xLjkgMiAyIDJoMTJjMS4xIDAgMi0uOSAyLTJ2LThsLTYtNnptLTIgMTJIOHYtMmgydjJ6bTIgNGgtNlY4aDZ2MnpNMTQgMnY0aDRsLTQtNHoiLz4KPC9zdmc+Cg==">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -12,36 +12,6 @@
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    
-    <style>
-        .hero-logo {
-            max-width: 180px;
-            margin: 0 auto 20px auto;
-            display: block;
-        }
-        .construction-notice {
-            background-color: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeeba;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 25px auto;
-            max-width: 600px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .construction-notice strong {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 1rem;
-        }
-        .construction-notice a {
-            color: #856404;
-            text-decoration: underline;
-            font-weight: 600;
-        }
-    </style>
 </head>
 <body>
     <header class="main-header">
@@ -49,13 +19,13 @@
             <nav class="main-nav">
                 <a href="index.html" class="logo"><img src="assets/logo.png" alt="PDF Mestre Logo"></a>
                 <div class="nav-links">
-                    <a href="index.html" class="active-tool">Numerar PDF</a>
+                    <a href="index.html">Numerar PDF</a>
                     <a href="juntar.html">Juntar PDF</a>
                     <div class="dropdown">
                         <button class="dropdown-btn">Mais Ferramentas ▼</button>
                         <div class="dropdown-content">
                             <a href="dividir.html">Dividir PDF</a>
-                            <a href="marcadagua.html">Marca d'Água</a>
+                            <a href="marcadagua.html" class="active-tool">Marca d'Água</a>
                             <a href="imagens.html">Imagens para PDF</a>
                             <a href="girar.html">Girar Páginas</a>
                         </div>
@@ -69,19 +39,9 @@
     <main>
         <section class="hero">
             <div class="container">
-                <img src="assets/logo.png" alt="PDF Mestre" class="hero-logo">
-                
-                <h1>PDF Mestre</h1>
-                <p class="subtitle">Sua suíte completa de ferramentas para editar, organizar e processar documentos PDF com total segurança.</p>
-                
-                <div class="construction-notice">
-                    <strong>🚧 Estamos em Construção (Beta)</strong>
-                    No momento, as funções de <span style="color:var(--primary-color);">Numeração Bates</span> (abaixo) e <a href="juntar.html">Juntar PDF</a> estão 100% operacionais. Estamos trabalhando duro para trazer mais novidades em breve!
-                </div>
-
-                <button class="button-primary" id="hero-cta">
-                    Usar Numeração Bates
-                </button>
+                <h1>Adicionar Marca d'Água</h1>
+                <p class="subtitle">Insira textos como "CONFIDENCIAL" ou "CÓPIA" no centro de todas as páginas do seu PDF.</p>
+                <button class="button-primary" id="hero-cta">Selecionar Arquivos</button>
             </div>
         </section>
 
@@ -91,7 +51,7 @@
                     <div class="tool-step">
                         <div class="step-icon-container">
                             <div class="step-icon">1</div>
-                            <h3>Selecione os Arquivos para Numerar</h3>
+                            <h3>Selecione os Arquivos</h3>
                         </div>
                         <div id="file-drop-zone" class="file-drop-zone">
                             <p>Arraste os arquivos PDF aqui</p>
@@ -105,54 +65,25 @@
                     <div class="tool-step">
                         <div class="step-icon-container">
                             <div class="step-icon">2</div>
-                            <h3>Personalize a Numeração</h3>
+                            <h3>Personalize a Marca d'Água</h3>
                         </div>
                         <div class="customization-grid">
                             <div class="form-group">
-                                <label for="prefix">Prefixo</label>
-                                <input type="text" id="prefix" placeholder="Ex: PROCESSO-01-">
+                                <label for="watermark-text">Texto</label>
+                                <input type="text" id="watermark-text" value="CONFIDENCIAL">
                             </div>
-                            <div class="form-group">
-                                <label for="start-number">Nº Inicial</label>
-                                <input type="number" id="start-number" value="1" min="1">
-                            </div>
-                            <div class="form-group">
-                                <label for="digits">Nº de Dígitos</label>
-                                <input type="number" id="digits" value="5" min="1">
-                            </div>
-                            <div class="form-group">
-                                <label for="increment-step">Incremento</label>
-                                <input type="number" id="increment-step" value="1" min="1">
-                            </div>
-                        </div>
-                        <div class="customization-grid">
                             <div class="form-group">
                                 <label for="font-size">Tamanho da Fonte</label>
-                                <input type="number" id="font-size" value="12" min="1">
+                                <input type="number" id="font-size" value="60" min="10" max="200">
                             </div>
                             <div class="form-group">
                                 <label for="font-color">Cor da Fonte</label>
                                 <input type="color" id="font-color" value="#000000">
                             </div>
                             <div class="form-group">
-                                <label for="bg-color">Cor do Fundo (Opcional)</label>
-                                <input type="color" id="bg-color" value="#FFFFFF">
+                                <label for="opacity" title="Controla a transparência do texto. 100% deixa a cor sólida e forte. 30% deixa bem suave (transparente).">Opacidade (1-100%) ℹ️</label>
+                                <input type="number" id="opacity" value="30" min="1" max="100">
                             </div>
-                        </div>
-                        <h4>Posição do Carimbo</h4>
-                        <div class="position-controls">
-                            <input type="radio" id="pos-tl" name="position" value="top-left">
-                            <label for="pos-tl">Superior Esquerdo</label>
-                            <input type="radio" id="pos-tc" name="position" value="top-center">
-                            <label for="pos-tc">Superior Central</label>
-                            <input type="radio" id="pos-tr" name="position" value="top-right" checked>
-                            <label for="pos-tr">Superior Direito</label>
-                            <input type="radio" id="pos-bl" name="position" value="bottom-left">
-                            <label for="pos-bl">Inferior Esquerdo</label>
-                            <input type="radio" id="pos-bc" name="position" value="bottom-center">
-                            <label for="pos-bc">Inferior Central</label>
-                            <input type="radio" id="pos-br" name="position" value="bottom-right">
-                            <label for="pos-br">Inferior Direito</label>
                         </div>
                     </div>
 
@@ -163,65 +94,36 @@
                         </div>
                         <div class="form-group">
                             <label for="zip-name">Nome do arquivo ZIP (se vários PDFs)</label>
-                            <input type="text" id="zip-name" value="documentos_numerados">
+                            <input type="text" id="zip-name" value="documentos_marcados">
                         </div>
-                        <button id="generate-btn" class="button-primary full-width">Gerar Numeração Bates</button>
+                        <button id="generate-btn" class="button-primary full-width">Aplicar Marca d'Água</button>
                         <button id="force-generate-btn" class="button-warning full-width" style="margin-top: 10px;" title="Use apenas se o arquivo der erro de proteção. Transformará o PDF em imagem.">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                            Forçar Numeração (Remover Assinatura)
+                            Forçar Aplicação (Remover Assinatura)
                         </button>
-                        <div class="construction-notice" style="margin-top: 15px; margin-bottom: 0; text-align: left; padding: 15px; font-size: 0.9rem;">
-                            <strong>⚠️ Sobre a Numeração Forçada</strong>
-                            Use este botão extra apenas se o PDF for rejeitado por possuir Assinatura Digital (ex: Gov.br) ou restrições de dono. O sistema removerá as assinaturas convertendo as páginas em imagens de alta qualidade. O carimbo será aplicado, mas o texto do PDF resultante deixará de ser selecionável (Ctrl+F).
-                        </div>
                         <p id="status-message" class="status-message"></p>
                     </div>
                 </div>
             </div>
         </section>
-
         <section id="como-funciona" class="content-section alternate-bg">
             <div class="container">
-                <h2>Como Adicionar Numeração Bates em 3 Passos Simples</h2>
+                <h2>Como Adicionar Marca d'Água</h2>
                 <div class="steps-grid">
                     <div class="step-card">
                         <div class="step-number">1</div>
-                        <h3>Envie Seus Arquivos PDF</h3>
-                        <p>Clique no botão "Selecionar Arquivos" ou arraste e solte seus documentos na área indicada. Você pode enviar múltiplos arquivos de uma vez.</p>
+                        <h3>Envie os PDFs</h3>
+                        <p>Selecione um ou vários documentos PDF de uma vez. O processamento é todo local e 100% seguro.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">2</div>
-                        <h3>Personalize o Carimbo Bates</h3>
-                        <p>Defina o prefixo, número inicial, quantidade de dígitos, posição, fonte e cores para criar um carimbo que atenda perfeitamente às suas necessidades.</p>
+                        <h3>Ajuste a Transparência</h3>
+                        <p>Defina a palavra (ex: "CONFIDENCIAL") e ajuste a "Opacidade". Um número menor deixa o carimbo mais transparente.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">3</div>
-                        <h3>Baixe os Arquivos Numerados</h3>
-                        <p>Clique em "Gerar" e o download começará instantaneamente. Seus novos arquivos estarão prontos para uso, com a numeração aplicada.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="content-section">
-            <div class="container">
-                <h2>Perguntas Frequentes (FAQ)</h2>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h4>O que é a Numeração Bates?</h4>
-                        <p>É um método usado para indexar documentos legais e comerciais, aplicando um identificador único em cada página para facilitar a referência e recuperação. Essencial para advogados, peritos e empresas.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Esta ferramenta é realmente gratuita?</h4>
-                        <p>Sim, é 100% gratuita e sem limitações de uso. Não há custos ocultos, necessidade de cadastro ou qualquer tipo de assinatura. Use à vontade.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>Meus arquivos estão seguros?</h4>
-                        <p>Absolutamente. A ferramenta opera localmente no seu navegador (client-side). Nenhum dado ou arquivo é transferido para a internet, garantindo total privacidade e segurança.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>E se o PDF tiver Assinatura Digital (Gov.br)?</h4>
-                        <p>O <strong>PDF Mestre</strong> possui um recurso exclusivo para isso! Se o seu arquivo der erro por possuir assinaturas digitais, basta usar o botão escuro <strong>"Forçar Numeração (Remover Assinatura)"</strong>. O sistema contornará a proteção automaticamente. <em>Nota: A numeração será aplicada, mas as páginas viram imagens de alta qualidade (removendo a assinatura e seleção de texto).</em></p>
+                        <h3>Baixe os Arquivos</h3>
+                        <p>Clique em Aplicar. O sistema carimbará o texto diagonalmente no centro de todas as páginas.</p>
                     </div>
                 </div>
             </div>
@@ -292,6 +194,6 @@
     </footer>
 
     <script src="js/utils.js"></script>
-    <script src="js/bates.js"></script>
+    <script src="js/marcadagua.js"></script>
 </body>
 </html>

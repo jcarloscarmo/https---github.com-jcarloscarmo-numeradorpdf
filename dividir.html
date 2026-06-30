@@ -3,77 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quem Sou Eu - PDF Mestre</title>
-    <meta name="author" content="Jolt Sistemas">
+    <title>Dividir PDF - PDF Mestre</title>
+    <meta name="description" content="Extraia páginas específicas ou divida seus arquivos PDF de forma rápida e segura.">
     <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzRBN0RGNyI+CiAgPHBhdGggZD0iTTE0IDJoLThjLTEuMSAwLTIgLjktMiAydjE0YzAgMS4xLjkgMiAyIDJoMTJjMS4xIDAgMi0uOSAyLTJ2LThsLTYtNnptLTIgMTJIOHYtMmgydjJ6bTIgNGgtNlY4aDZ2MnpNMTQgMnY0aDRsLTQtNHoiLz4KPC9zdmc+Cg==">
-    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-
-    <style>
-        .about-section {
-            padding: 60px 0;
-            background-color: #fff;
-        }
-        .about-grid {
-            display: grid;
-            grid-template-columns: 300px 1fr; /* Coluna da foto fixa, texto flexível */
-            gap: 50px;
-            align-items: start;
-        }
-        
-        .profile-container {
-            position: relative;
-        }
-        
-        .profile-pic {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            border: 5px solid #fff;
-        }
-
-        .about-text h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .about-text h1::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: #e9ecef;
-            margin-top: 10px;
-            border-radius: 2px;
-        }
-
-        .about-text p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        /* Responsividade para celular */
-        @media (max-width: 768px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .profile-pic {
-                max-width: 250px;
-                margin: 0 auto;
-            }
-            .about-text h1::after {
-                margin: 10px auto; /* Centraliza a linha decorativa */
-            }
-        }
-    </style>
 </head>
 <body>
     <header class="main-header">
@@ -86,42 +22,82 @@
                     <div class="dropdown">
                         <button class="dropdown-btn">Mais Ferramentas ▼</button>
                         <div class="dropdown-content">
-                            <a href="dividir.html">Dividir PDF</a>
+                            <a href="dividir.html" class="active-tool">Dividir PDF</a>
                             <a href="marcadagua.html">Marca d'Água</a>
                             <a href="imagens.html">Imagens para PDF</a>
                             <a href="girar.html">Girar Páginas</a>
                         </div>
                     </div>
-                    <a href="quem-sou-eu.html" class="active-tool">Quem Sou Eu</a>
+                    <a href="quem-sou-eu.html">Quem Sou Eu</a>
                 </div>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="hero" style="padding: 60px 0; min-height: auto;">
+        <section class="hero">
             <div class="container">
-                <h1>Conheça o Desenvolvedor</h1>
-                <p class="subtitle">Tecnologia, inovação e soluções práticas.</p>
+                <h1>Dividir / Extrair Páginas</h1>
+                <p class="subtitle">Selecione as páginas que deseja separar do seu PDF. Tudo 100% no seu navegador, com total privacidade.</p>
+                <button class="button-primary" id="hero-cta">Selecionar Arquivo</button>
             </div>
         </section>
 
-        <section class="about-section">
+        <section id="ferramenta" class="tool-section">
             <div class="container">
-                <div class="about-grid">
-                    <div class="profile-container">
-                        <img src="assets/jose-carlos.png" alt="José Carlos" class="profile-pic">
+                <div class="tool-container">
+                    <div class="tool-step">
+                        <div class="step-icon-container">
+                            <div class="step-icon">1</div>
+                            <h3>Selecione o PDF</h3>
+                        </div>
+                        <div id="file-drop-zone" class="file-drop-zone">
+                            <p>Arraste 1 arquivo PDF aqui</p>
+                            <p>ou</p>
+                            <button id="file-input-button" class="button-secondary">Selecionar Arquivo</button>
+                            <input type="file" id="file-input" accept=".pdf" style="display: none;">
+                        </div>
+                        <div id="file-list-container" class="file-list-container"></div>
                     </div>
 
-                    <div class="about-text">
-                        <h1>Sobre Mim</h1>
-                        <p>Sou <strong>José Carlos</strong>, tenho 36 anos e 20 anos de experiência na área da tecnologia, atuando desde manutenção de hardware até desenvolvimento web moderno. Sou apaixonado por aprender e compartilhar conhecimento prático.</p>
+                    <div class="tool-step">
+                        <div class="step-icon-container">
+                            <div class="step-icon">2</div>
+                            <h3>Páginas para Extrair</h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="page-ranges" title="Digite as páginas que deseja separar. Use vírgula para páginas soltas (1, 5) e traço para sequências (2-6).">Intervalo de Páginas (Ex: 1, 3-5, 10) ℹ️</label>
+                            <input type="text" id="page-ranges" placeholder="Deixe em branco para extrair todas, ou digite: 1-5, 8">
+                        </div>
+                        <div class="form-group" style="margin-top: 15px;">
+                            <label for="output-name">Nome do arquivo Final</label>
+                            <input type="text" id="output-name" value="arquivo_extraido">
+                        </div>
                         
-                        <p>Desde cedo, me interessei por como a tecnologia pode facilitar a vida das pessoas. Hoje sou proprietário da <strong>Jcell</strong> e da <strong>Jolt Sistemas</strong>, empreendimentos onde aplico essa paixão diariamente.</p>
-                        
-                        <p>Na <em>Jcell</em>, o foco é qualidade e agilidade na manutenção de eletrônicos. Já na <em>Jolt Sistemas</em>, meu objetivo é ajudar negócios iniciantes a terem uma presença digital forte, desenvolvendo páginas web personalizadas e ferramentas úteis como este <strong>PDF Mestre</strong>.</p>
-                        
-                        <p>Além do código, sou entusiasta de jogos, música e cinema. Acredito que essas paixões alimentam a criatividade necessária para criar soluções de software intuitivas e eficientes.</p>
+                        <button id="generate-btn" class="button-primary full-width" style="margin-top: 20px;">Extrair Páginas</button>
+                        <p id="status-message" class="status-message"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="como-funciona" class="content-section alternate-bg">
+            <div class="container">
+                <h2>Como Dividir e Extrair Páginas</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Envie o Arquivo</h3>
+                        <p>Selecione o documento PDF do qual você deseja retirar certas páginas. O arquivo nunca sai do seu computador.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Defina o Intervalo</h3>
+                        <p>Digite as páginas que você quer manter. Por exemplo: "1-5" (da página 1 à 5), ou "10, 15" (apenas as páginas 10 e 15).</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Baixe o Resultado</h3>
+                        <p>Clique em Extrair e o sistema criará instantaneamente um novo PDF contendo apenas as páginas que você escolheu.</p>
                     </div>
                 </div>
             </div>
@@ -190,5 +166,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/dividir.js"></script>
 </body>
 </html>
