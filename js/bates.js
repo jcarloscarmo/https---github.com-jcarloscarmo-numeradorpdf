@@ -6,8 +6,13 @@ const fileInputButton = document.getElementById('file-input-button');
 const fileListContainer = document.getElementById('file-list-container');
 const fileDropZone = document.getElementById('file-drop-zone');
 const generateBtn = document.getElementById('generate-btn');
+const forceGenerateBtn = document.getElementById('force-generate-btn');
 const statusMessage = document.getElementById('status-message');
 const heroCta = document.getElementById('hero-cta');
+
+if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+}
 
 // Inputs de Opções
 const prefixInput = document.getElementById('prefix');
@@ -30,6 +35,7 @@ if(heroCta) heroCta.addEventListener('click', (e) => {
 
 fileInput.addEventListener('change', handleFileSelect);
 generateBtn.addEventListener('click', generateAndDownloadFiles);
+if(forceGenerateBtn) forceGenerateBtn.addEventListener('click', performForceBatesNumbering);
 
 // Drag and Drop
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
@@ -47,6 +53,7 @@ fileDropZone.addEventListener('drop', (e) => {
 
 function handleFileSelect(event) {
     selectedFiles = Array.from(event.target.files);
+    selectedFiles.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
     displayFiles();
 }
 
@@ -178,15 +185,120 @@ async function performBatesNumbering() {
     }
 }
 
-// Handler do Modal
+// Handler Normal
 function generateAndDownloadFiles() {
-    if (typeof openThankYouSupportModal === 'function') {
-        openThankYouSupportModal({
-            qrImageUrl: 'assets/qrcode.jpg',
-            paymentKey: '690be209-2356-4000-9c14-6a060b4803b4',
-            onHelped: () => { performBatesNumbering(); }
-        });
-    } else {
-        performBatesNumbering();
+    performBatesNumbering();
+}
+
+// Handler de Rasterização (Forçar)
+async function performForceBatesNumbering() {
+    if (selectedFiles.length === 0) {
+        alert('Selecione arquivos PDF primeiro.');
+        return;
+    }
+
+    const zipName = zipNameInput.value.trim() || 'arquivos_numerados';
+    generateBtn.disabled = true;
+    forceGenerateBtn.disabled = true;
+    statusMessage.textContent = 'Processando (Rasterização)... Pode demorar um pouco.';
+
+    const zip = new JSZip();
+    let batesCounter = parseInt(startNumberInput.value, 10);
+    const incrementStep = parseInt(incrementStepInput.value, 10) || 1;
+    let lastPdfBytes;
+
+    try {
+        for (const file of selectedFiles) {
+            statusMessage.textContent = `Forçando numeração em ${file.name}...`;
+            
+            const fileBytes = await file.arrayBuffer();
+            
+            // Lê com PDF.js
+            const pdfData = new Uint8Array(fileBytes);
+            const loadingTask = pdfjsLib.getDocument({data: pdfData});
+            const pdfDocjs = await loadingTask.promise;
+            
+            // Cria PDF vazio com pdf-lib
+            const pdfDoc = await PDFDocument.create();
+            const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+            
+            for (let i = 1; i <= pdfDocjs.numPages; i++) {
+                const pageJs = await pdfDocjs.getPage(i);
+                // Escala de 2.0 para preservar nitidez
+                const viewport = pageJs.getViewport({scale: 2.0});
+                
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                
+                await pageJs.render({ canvasContext: ctx, viewport: viewport }).promise;
+                
+                const imgDataUrl = canvas.toDataURL('image/jpeg', 0.95);
+                const imgBytes = await fetch(imgDataUrl).then(res => res.arrayBuffer());
+                const image = await pdfDoc.embedJpg(imgBytes);
+                
+                const originalViewport = pageJs.getViewport({scale: 1.0});
+                const newPage = pdfDoc.addPage([originalViewport.width, originalViewport.height]);
+                
+                newPage.drawImage(image, {
+                    x: 0, y: 0,
+                    width: originalViewport.width, height: originalViewport.height
+                });
+                
+                // Carimbo Bates
+                const { width, height } = newPage.getSize();
+                const batesNumber = `${prefixInput.value}${String(batesCounter).padStart(parseInt(digitsInput.value, 10), '0')}`;
+                
+                const fontSize = parseInt(fontSizeInput.value, 10);
+                const textWidth = font.widthOfTextAtSize(batesNumber, fontSize);
+                const textHeight = font.heightAtSize(fontSize);
+                const padding = 5;
+
+                const position = document.querySelector('input[name="position"]:checked').value;
+                let x, y;
+                if (position.includes('left')) x = padding;
+                if (position.includes('center')) x = width / 2 - textWidth / 2;
+                if (position.includes('right')) x = width - textWidth - padding;
+                if (position.includes('top')) y = height - textHeight - padding;
+                if (position.includes('bottom')) y = padding;
+
+                newPage.drawRectangle({
+                    x: x - padding, y: y - padding / 2,
+                    width: textWidth + (padding * 2), height: textHeight + padding,
+                    color: hexToRgb(bgColorInput.value),
+                });
+
+                newPage.drawText(batesNumber, {
+                    x: x, y: y,
+                    font: font, size: fontSize,
+                    color: hexToRgb(fontColorInput.value),
+                });
+
+                batesCounter += incrementStep;
+            }
+
+            lastPdfBytes = await pdfDoc.save();
+            zip.file(file.name, lastPdfBytes);
+        }
+
+        if (selectedFiles.length > 1) {
+            statusMessage.textContent = 'Gerando ZIP...';
+            const content = await zip.generateAsync({ type: "blob" });
+            saveAs(content, `${zipName}.zip`);
+        } else {
+            const fileName = selectedFiles[0].name.replace(/\.pdf$/i, '_numerado.pdf');
+            saveAs(new Blob([lastPdfBytes], { type: 'application/pdf' }), fileName);
+        }
+        statusMessage.textContent = 'Concluído!';
+        statusMessage.style.color = 'inherit';
+
+    } catch (error) {
+        console.error(error);
+        statusMessage.textContent = 'Erro ao forçar processamento: ' + error.message;
+        statusMessage.style.color = '#e74c3c';
+    } finally {
+        generateBtn.disabled = false;
+        forceGenerateBtn.disabled = false;
     }
 }

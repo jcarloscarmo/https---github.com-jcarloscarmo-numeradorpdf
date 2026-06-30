@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/thankyou-modal.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     
     <style>
         .hero-logo {
@@ -158,6 +158,7 @@
                             <input type="text" id="zip-name" value="documentos_numerados">
                         </div>
                         <button id="generate-btn" class="button-primary full-width">Gerar Numeração Bates</button>
+                        <button id="force-generate-btn" class="button-secondary full-width" style="margin-top: 10px;" title="Use apenas se o arquivo der erro de proteção. Transformará o PDF em imagem.">Forçar Numeração (Arquivo Protegido - Função em testes)</button>
                         <p id="status-message" class="status-message"></p>
                     </div>
                 </div>
@@ -240,7 +241,6 @@
     </footer>
 
     <script src="js/utils.js"></script>
-    <script src="js/thankyou-modal.js"></script>
     <script src="js/bates.js"></script>
 </body>
 </html>

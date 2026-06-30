@@ -180,20 +180,7 @@ async function performMerge() {
     }
 }
 
-// Disparador do Modal Pix + Ação
+// Disparador
 function generateAndDownloadFiles() {
-    // Verifica se a função do modal existe (carregada do thankyou-modal.js)
-    if (typeof openThankYouSupportModal === 'function') {
-        openThankYouSupportModal({
-            qrImageUrl: 'assets/qrcode.jpg', // Certifique-se que essa imagem existe
-            paymentKey: '690be209-2356-4000-9c14-6a060b4803b4',
-            onHelped: () => { 
-                // Callback: roda quando o usuário fecha o modal ou clica em "Já ajudei"
-                performMerge(); 
-            }
-        });
-    } else {
-        // Fallback caso o script do modal falhe
-        performMerge();
-    }
+    performMerge();
 }
