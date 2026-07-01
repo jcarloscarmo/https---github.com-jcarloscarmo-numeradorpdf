@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Recibo - PDF Mestre</title>
+    <meta name="description" content="Gere recibos profissionais com sua logomarca gratuitamente.">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzRBN0RGNyI+CiAgPHBhdGggZD0iTTE0IDJoLThjLTEuMSAwLTIgLjktMiAydjE0YzAgMS4xLjkgMiAyIDJoMTJjMS4xIDAgMi0uOSAyLTJ2LThsLTYtNnptLTIgMTJIOHYtMmgydjJ6bTIgNGgtNlY4aDZ2MnpNMTQgMnY0aDRsLTQtNHoiLz4KPC9zdmc+Cg==">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="css/style.css?v=3">
+    
+    <style>
+        .receipt-form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+        .form-section-title {
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        .logo-preview-box {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #fafafa;
+            margin-bottom: 10px;
+        }
+        .logo-preview-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+        }
+        .checkbox-group label {
+            font-weight: 500;
+            margin: 0;
+            cursor: pointer;
+        }
+    </style>
+
+    <!-- SEO & Open Graph -->
+    <meta name="keywords" content="PDF, ferramentas PDF, numerar PDF, juntar PDF, dividir PDF, carimbo PDF, bates, advogado, ferramentas jurídicas, ocr, prazos processuais">
+    <meta property="og:title" content="PDF Mestre - Ferramentas Seguras para Advogados">
+    <meta property="og:description" content="Sua plataforma 100% segura para PDFs e utilitários. Tudo processado no seu navegador, sem envio de arquivos para a internet.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdfmestre.com.br">
+    <meta property="og:image" content="https://pdfmestre.com.br/assets/logo.png">
+    <link rel="canonical" href="https://pdfmestre.com.br">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo"><img src="assets/logo.png" alt="PDF Mestre"></a>
+                <button class="close-sidebar">&times;</button>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>Ferramentas PDF</h4>
+                    <a href="index.html" id="nav-index.html">Numerar PDF (Bates)</a>
+                    <a href="juntar.html" id="nav-juntar.html">Juntar PDF</a>
+                    <a href="dividir.html" id="nav-dividir.html">Dividir PDF</a>
+                    <a href="marcadagua.html" id="nav-marcadagua.html">Marca d'Água</a>
+                    <a href="imagens.html" id="nav-imagens.html">Fotos para PDF</a>
+                    <a href="girar.html" id="nav-girar.html">Girar Páginas</a>
+                </div>
+                <div class="nav-section">
+                    <h4>Utilitários</h4>
+                    <a href="recibo.html" id="nav-recibo.html" class="active-tool">Gerador de Recibo</a>
+                    <a href="limpador.html" id="nav-limpador.html">Limpador de Texto</a>
+                    <a href="prazos.html" id="nav-prazos.html">Calculadora de Prazos</a>
+                    <a href="ocr.html" id="nav-ocr.html">Extrair Texto de Imagem</a>
+                </div>
+                <div class="nav-section">
+                    <h4>Mais</h4>
+                    <a href="quem-sou-eu.html" id="nav-quem-sou-eu.html">Sobre Mim</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="mobile-header">
+                <button class="open-sidebar">☰</button>
+                <img src="assets/logo.png" alt="PDF Mestre Logo" height="30">
+            </header>
+            
+            <main style="padding: 40px 20px; background-color: var(--background-color);">
+                <div class="container">
+                    <div style="margin-bottom: 30px; text-align: left;">
+                        <h1 style="font-size: 2.2rem; margin-bottom: 5px; color: var(--dark-color);">Gerador de Recibos</h1>
+                        <p style="color: #666; font-size: 1.1rem;">Gere recibos profissionais com a sua logo. Tudo processado no seu navegador com total privacidade.</p>
+                    </div>
+
+                    <div class="tool-container" style="padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">                       <div class="receipt-form">
+                            <h3 class="form-section-title">1. Seus Dados (Emissor)</h3>
+                            <div class="customization-grid">
+                                <div>
+                                    <div class="logo-preview-box" id="logo-preview">
+                                        <span style="font-size: 0.8rem; color: #888; text-align:center;">Sem<br>Logo</span>
+                                    </div>
+                                    <input type="file" id="logo-upload" accept="image/png, image/jpeg" style="font-size: 0.85rem; width: 100%;">
+                                    <p style="font-size: 0.75rem; color: #666; margin-top: 5px;">Recomendado: PNG fundo transparente.</p>
+                                </div>
+                                <div>
+                                    <div class="form-group">
+                                        <label>Seu Nome ou Razão Social</label>
+                                        <input type="text" id="emissor-nome" placeholder="Ex: João Silva Advocacia">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>CPF ou CNPJ</label>
+                                        <input type="text" id="emissor-doc" placeholder="Ex: 00.000.000/0001-00">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Endereço Completo</label>
+                                        <input type="text" id="emissor-end" placeholder="Sua rua, número, cidade - Estado">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="save-data" checked>
+                                <label for="save-data">Lembrar meus dados e logomarca neste navegador para a próxima vez.</label>
+                            </div>
+                        </div>
+
+                        <div class="receipt-form">
+                            <h3 class="form-section-title">2. Dados do Pagador (Cliente)</h3>
+                            <div class="customization-grid">
+                                <div class="form-group">
+                                    <label>Recebi de (Nome do Cliente)</label>
+                                    <input type="text" id="pagador-nome" placeholder="Nome completo do pagador">
+                                </div>
+                                <div class="form-group">
+                                    <label>CPF/CNPJ do Pagador</label>
+                                    <input type="text" id="pagador-doc" placeholder="Opcional">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="receipt-form">
+                            <h3 class="form-section-title">3. Detalhes do Pagamento</h3>
+                            <div class="customization-grid">
+                                <div class="form-group">
+                                    <label>Valor (R$)</label>
+                                    <input type="text" id="valor-num" placeholder="Ex: 1.500,00">
+                                </div>
+                                <div class="form-group">
+                                    <label>Valor por Extenso</label>
+                                    <input type="text" id="valor-extenso" placeholder="Um mil e quinhentos reais">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Referente a (Descrição do Serviço)</label>
+                                <input type="text" id="referente" placeholder="Ex: Honorários advocatícios ref. processo X">
+                            </div>
+                            <div class="customization-grid">
+                                <div class="form-group">
+                                    <label>Cidade da Emissão</label>
+                                    <input type="text" id="cidade" placeholder="Ex: São Paulo">
+                                </div>
+                                <div class="form-group">
+                                    <label>Data</label>
+                                    <input type="date" id="data-emissao">
+                                </div>
+                            </div>
+                            
+                            <button id="btn-imprimir" class="button-primary full-width" style="margin-top: 20px; font-size: 1.2rem;">Gerar Recibo (Imprimir / Salvar PDF)</button>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <section id="como-funciona" class="content-section" style="margin-top: 60px;">
+                    <div class="container">
+                        <h2>Como Gerar Recibos Profissionais</h2>
+                        <div class="steps-grid">
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <h3>Preencha Seus Dados</h3>
+                                <p>Faça upload da logomarca do seu escritório e preencha seus dados de emissor. Marque a caixinha para salvar no navegador.</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <h3>Dados do Cliente</h3>
+                                <p>Informe o nome do pagador, o valor e a que serviço se refere (ex: honorários advocatícios).</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <h3>Imprima ou Salve</h3>
+                                <p>Clique em Gerar Recibo e a janela nativa de impressão será aberta. Você pode imprimir fisicamente ou "Salvar como PDF".</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="related-tools content-section alternate-bg">
+                    <div class="container">
+                        <h2>Você também pode gostar...</h2>
+                        <div class="related-grid">
+                            <a href="limpador.html" class="related-card">
+                                <span class="related-icon">🧹</span>
+                                <h4>Limpador de Texto</h4>
+                            </a>
+                            <a href="index.html" class="related-card">
+                                <span class="related-icon">🔢</span>
+                                <h4>Numerar PDF</h4>
+                            </a>
+                            <a href="juntar.html" class="related-card">
+                                <span class="related-icon">📑</span>
+                                <h4>Juntar PDF</h4>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="main-footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-column">
+                            <h3>PDF Mestre</h3>
+                            <p>Sua suíte jurídica de bolso. Ferramentas essenciais para advogados modernas, com 100% de processamento local (no seu navegador). Segurança e privacidade para você e seus clientes.</p>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Ferramentas</h3>
+                            <ul>
+                                <li><a href="index.html">Numerador Bates</a></li>
+                                <li><a href="juntar.html">Juntar PDFs</a></li>
+                                <li><a href="prazos.html">Calculadora de Prazos</a></li>
+                                <li><a href="ocr.html">Extrator de Texto (OCR)</a></li>
+                                <li><a href="limpador.html">Limpador de Texto</a></li>
+                                <li><a href="recibo.html">Gerador de Recibos</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Legal</h3>
+                            <ul>
+                                <li><a href="quem-sou-eu.html">Quem Somos</a></li>
+                                <li><a href="#">Privacidade</a></li>
+                                <li><a href="#">Termos de Uso</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2024 PDF Mestre. Todos os direitos reservados. Processamento 100% Client-Side (Sem Servidores).</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Área de Impressão (Oculta na tela normal) -->
+    <div id="print-area"></div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/recibo.js"></script>
+</body>
+</html>

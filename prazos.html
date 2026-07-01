@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Prazos - PDF Mestre</title>
+    <meta name="description" content="Calcule prazos processuais em dias úteis facilmente.">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzRBN0RGNyI+CiAgPHBhdGggZD0iTTE0IDJoLThjLTEuMSAwLTIgLjktMiAydjE0YzAgMS4xLjkgMiAyIDJoMTJjMS4xIDAgMi0uOSAyLTJ2LThsLTYtNnptLTIgMTJIOHYtMmgydjJ6bTIgNGgtNlY4aDZ2MnpNMTQgMnY0aDRsLTQtNHoiLz4KPC9zdmc+Cg==">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="css/style.css?v=3">
+
+    <!-- SEO & Open Graph -->
+    <meta name="keywords" content="PDF, ferramentas PDF, numerar PDF, juntar PDF, dividir PDF, carimbo PDF, bates, advogado, ferramentas jurídicas, ocr, prazos processuais">
+    <meta property="og:title" content="PDF Mestre - Ferramentas Seguras para Advogados">
+    <meta property="og:description" content="Sua plataforma 100% segura para PDFs e utilitários. Tudo processado no seu navegador, sem envio de arquivos para a internet.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdfmestre.com.br">
+    <meta property="og:image" content="https://pdfmestre.com.br/assets/logo.png">
+    <link rel="canonical" href="https://pdfmestre.com.br">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo"><img src="assets/logo.png" alt="PDF Mestre"></a>
+                <button class="close-sidebar">&times;</button>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>Ferramentas PDF</h4>
+                    <a href="index.html" id="nav-index.html">Numerar PDF (Bates)</a>
+                    <a href="juntar.html" id="nav-juntar.html">Juntar PDF</a>
+                    <a href="dividir.html" id="nav-dividir.html">Dividir PDF</a>
+                    <a href="marcadagua.html" id="nav-marcadagua.html">Marca d'Água</a>
+                    <a href="imagens.html" id="nav-imagens.html">Fotos para PDF</a>
+                    <a href="girar.html" id="nav-girar.html">Girar Páginas</a>
+                </div>
+                <div class="nav-section">
+                    <h4>Utilitários</h4>
+                    <a href="recibo.html" id="nav-recibo.html">Gerador de Recibo</a>
+                    <a href="limpador.html" id="nav-limpador.html">Limpador de Texto</a>
+                    <a href="prazos.html" id="nav-prazos.html" class="active-tool">Calculadora de Prazos</a>
+                    <a href="ocr.html" id="nav-ocr.html">Extrair Texto de Imagem</a>
+                </div>
+                <div class="nav-section">
+                    <h4>Mais</h4>
+                    <a href="quem-sou-eu.html" id="nav-quem-sou-eu.html">Sobre Mim</a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="mobile-header">
+                <button class="open-sidebar">☰</button>
+                <img src="assets/logo.png" alt="PDF Mestre Logo" height="30">
+            </header>
+            <main style="padding: 40px 20px; background-color: var(--background-color);">
+                <div class="container">
+                    <div style="margin-bottom: 30px; text-align: left;">
+                        <h1 style="font-size: 2.2rem; margin-bottom: 5px; color: var(--dark-color);">Calculadora de Prazos</h1>
+                        <p style="color: #666; font-size: 1.1rem;">Contagem automática em dias úteis (padrão Novo CPC). Exclui sábados e domingos.</p>
+                    </div>
+
+                    <div class="tool-container" style="padding: 40px; background: #fff; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #eaeaea;">
+                            <div class="form-group">
+                                <label for="data-publicacao" title="A contagem real inicia no próximo dia útil.">Data da Intimação / Publicação ℹ️</label>
+                                <input type="date" id="data-publicacao">
+                            </div>
+                            
+                            <div class="customization-grid">
+                                <div class="form-group">
+                                    <label for="prazo-dias">Prazo (Dias Úteis)</label>
+                                    <input type="number" id="prazo-dias" value="15" min="1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dias-suspensos" title="Some os dias de feriados e recessos que caem em dias úteis durante o período.">Feriados / Suspensão ℹ️</label>
+                                    <input type="number" id="dias-suspensos" value="0" min="0">
+                                </div>
+                            </div>
+                            
+                            <button id="btn-calcular" class="button-primary full-width" style="margin-top: 20px; font-size: 1.2rem;">Calcular Data Final</button>
+
+                            <div id="resultado-box" style="display: none; margin-top: 30px; text-align: center; padding: 20px; background-color: #f1f8ff; border: 2px solid var(--primary-color); border-radius: 8px;">
+                                <h3 style="margin-bottom: 10px; color: var(--dark-color);">O Prazo se encerra em:</h3>
+                                <div id="data-final" style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color);">--/--/----</div>
+                                <p id="dia-semana" style="margin-top: 10px; font-weight: 500; color: #555;"></p>
+                            </div>
+                    </div>
+                </div>
+                
+                <section id="como-funciona" class="content-section alternate-bg" style="margin-top: 60px;">
+                    <div class="container">
+                        <h2>Como a Calculadora Funciona (Novo CPC)</h2>
+                        <div class="steps-grid">
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <h3>Data da Intimação</h3>
+                                <p>Insira a data em que você foi intimado ou que a nota foi publicada. O sistema automaticamente pula este dia e inicia a contagem no primeiro dia útil seguinte (Art. 224).</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <h3>Prazo e Feriados</h3>
+                                <p>Defina a quantidade de dias úteis do prazo. Se houver feriados locais ou pontes no período, preencha a quantidade de dias no campo "Feriados / Suspensão".</p>
+                            </div>
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <h3>Dias Úteis</h3>
+                                <p>O sistema vai pular todos os sábados e domingos no caminho e te devolver a data fatal em destaque. A conferência não substitui a cautela do advogado.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <section class="related-tools content-section">
+                    <div class="container">
+                        <h2>Você também pode gostar...</h2>
+                        <div class="related-grid">
+                            <a href="index.html" class="related-card">
+                                <span class="related-icon">🔢</span>
+                                <h4>Numerar PDF</h4>
+                            </a>
+                            <a href="recibo.html" class="related-card">
+                                <span class="related-icon">🧾</span>
+                                <h4>Gerar Recibo</h4>
+                            </a>
+                            <a href="ocr.html" class="related-card">
+                                <span class="related-icon">📷</span>
+                                <h4>Extrair Texto (OCR)</h4>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <footer class="main-footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-column">
+                            <h3>PDF Mestre</h3>
+                            <p>Sua suíte jurídica de bolso. Ferramentas essenciais para advogados modernas, com 100% de processamento local (no seu navegador). Segurança e privacidade para você e seus clientes.</p>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Ferramentas</h3>
+                            <ul>
+                                <li><a href="index.html">Numerador Bates</a></li>
+                                <li><a href="juntar.html">Juntar PDFs</a></li>
+                                <li><a href="prazos.html">Calculadora de Prazos</a></li>
+                                <li><a href="ocr.html">Extrator de Texto (OCR)</a></li>
+                                <li><a href="limpador.html">Limpador de Texto</a></li>
+                                <li><a href="recibo.html">Gerador de Recibos</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Legal</h3>
+                            <ul>
+                                <li><a href="quem-sou-eu.html">Quem Somos</a></li>
+                                <li><a href="#">Privacidade</a></li>
+                                <li><a href="#">Termos de Uso</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2024 PDF Mestre. Todos os direitos reservados. Processamento 100% Client-Side (Sem Servidores).</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="js/sidebar.js"></script>
+    <script src="js/prazos.js"></script>
+</body>
+</html>

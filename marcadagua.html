@@ -10,31 +10,56 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
     <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=3">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <!-- SEO & Open Graph -->
+    <meta name="keywords" content="PDF, ferramentas PDF, numerar PDF, juntar PDF, dividir PDF, carimbo PDF, bates, advogado, ferramentas jurídicas, ocr, prazos processuais">
+    <meta property="og:title" content="PDF Mestre - Ferramentas Seguras para Advogados">
+    <meta property="og:description" content="Sua plataforma 100% segura para PDFs e utilitários. Tudo processado no seu navegador, sem envio de arquivos para a internet.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pdfmestre.com.br">
+    <meta property="og:image" content="https://pdfmestre.com.br/assets/logo.png">
+    <link rel="canonical" href="https://pdfmestre.com.br">
 </head>
 <body>
-    <header class="main-header">
-        <div class="container">
-            <nav class="main-nav">
-                <a href="index.html" class="logo"><img src="assets/logo.png" alt="PDF Mestre Logo"></a>
-                <div class="nav-links">
-                    <a href="index.html">Numerar PDF</a>
-                    <a href="juntar.html">Juntar PDF</a>
-                    <div class="dropdown">
-                        <button class="dropdown-btn">Mais Ferramentas ▼</button>
-                        <div class="dropdown-content">
-                            <a href="dividir.html">Dividir PDF</a>
-                            <a href="marcadagua.html" class="active-tool">Marca d'Água</a>
-                            <a href="imagens.html">Imagens para PDF</a>
-                            <a href="girar.html">Girar Páginas</a>
-                        </div>
-                    </div>
-                    <a href="quem-sou-eu.html">Quem Sou Eu</a>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo"><img src="assets/logo.png" alt="PDF Mestre"></a>
+                <button class="close-sidebar">&times;</button>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <h4>Ferramentas PDF</h4>
+                    <a href="index.html" id="nav-index.html">Numerar PDF (Bates)</a>
+                    <a href="juntar.html" id="nav-juntar.html">Juntar PDF</a>
+                    <a href="dividir.html" id="nav-dividir.html">Dividir PDF</a>
+                    <a href="marcadagua.html" id="nav-marcadagua.html" class="active-tool">Marca d'Água</a>
+                    <a href="imagens.html" id="nav-imagens.html">Fotos para PDF</a>
+                    <a href="girar.html" id="nav-girar.html">Girar Páginas</a>
+                </div>
+                <div class="nav-section">
+                    <h4>Utilitários</h4>
+                    <a href="recibo.html" id="nav-recibo.html">Gerador de Recibo</a>
+                    <a href="limpador.html" id="nav-limpador.html">Limpador de Texto</a>
+                    <a href="prazos.html" id="nav-prazos.html">Calculadora de Prazos</a>
+                    <a href="ocr.html" id="nav-ocr.html">Extrair Texto de Imagem</a>
+                </div>
+                <div class="nav-section">
+                    <h4>Mais</h4>
+                    <a href="quem-sou-eu.html" id="nav-quem-sou-eu.html">Sobre Mim</a>
                 </div>
             </nav>
-        </div>
-    </header>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header class="mobile-header">
+                <button class="open-sidebar">☰</button>
+                <img src="assets/logo.png" alt="PDF Mestre Logo" height="30">
+            </header>
 
     <main>
         <section class="hero">
@@ -162,38 +187,42 @@
     </main>
 
     <footer class="main-footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>PDF Mestre</h3>
-                    <p>Sua plataforma completa para edição de PDFs: segura, rápida e gratuita. Tudo processado 100% no seu navegador sem enviar arquivos para a internet.</p>
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-column">
+                            <h3>PDF Mestre</h3>
+                            <p>Sua suíte jurídica de bolso. Ferramentas essenciais para advogados modernas, com 100% de processamento local (no seu navegador). Segurança e privacidade para você e seus clientes.</p>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Ferramentas</h3>
+                            <ul>
+                                <li><a href="index.html">Numerador Bates</a></li>
+                                <li><a href="juntar.html">Juntar PDFs</a></li>
+                                <li><a href="prazos.html">Calculadora de Prazos</a></li>
+                                <li><a href="ocr.html">Extrator de Texto (OCR)</a></li>
+                                <li><a href="limpador.html">Limpador de Texto</a></li>
+                                <li><a href="recibo.html">Gerador de Recibos</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Legal</h3>
+                            <ul>
+                                <li><a href="quem-sou-eu.html">Quem Somos</a></li>
+                                <li><a href="#">Privacidade</a></li>
+                                <li><a href="#">Termos de Uso</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2024 PDF Mestre. Todos os direitos reservados. Processamento 100% Client-Side (Sem Servidores).</p>
+                    </div>
                 </div>
-                <div class="footer-column">
-                    <h3>Nossas Ferramentas</h3>
-                    <ul>
-                        <li><a href="index.html">Numerar PDF (Bates)</a></li>
-                        <li><a href="juntar.html">Juntar PDF</a></li>
-                        <li><a href="dividir.html">Dividir PDF</a></li>
-                        <li><a href="marcadagua.html">Marca d'Água</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Links Rápidos</h3>
-                    <ul>
-                        <li><a href="imagens.html">Imagens para PDF</a></li>
-                        <li><a href="girar.html">Girar Páginas</a></li>
-                        <li><a href="quem-sou-eu.html">Sobre o Desenvolvedor</a></li>
-                        <li><a href="https://wa.me/5512981723932" target="_blank">Suporte (WhatsApp)</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 PDF Mestre. Client-Side Secure Processing.</p>
-            </div>
-        </div>
-    </footer>
+            </footer>
 
     <script src="js/utils.js"></script>
     <script src="js/marcadagua.js"></script>
+        </div>
+    </div>
+    <script src="js/sidebar.js"></script>
 </body>
 </html>
